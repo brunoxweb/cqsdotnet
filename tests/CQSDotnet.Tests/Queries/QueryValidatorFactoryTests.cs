@@ -31,7 +31,7 @@ namespace CQSDotnet.Tests.Queries
             // Arrange
             var resolverMock = new Mock<ITypeResolver>();
 
-            resolverMock.Setup(r => r.Resolve(typeof(IQueryValidator<DummyQuery>))).Returns(null);
+            resolverMock.Setup(r => r.Resolve(typeof(IQueryValidator<DummyQuery>))).Throws(new Exception());
 
             var factory = new QueryValidatorFactory(resolverMock.Object);
 

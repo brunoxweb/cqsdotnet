@@ -30,7 +30,7 @@ namespace CQSDotnet.Tests.Commands
             var result = factory.GetValidator<DummyCommand>();
 
             // Assert
-            Assert.AreSame(validator.Object, result);
+            Assert.That(result, Is.SameAs(validator.Object));
         }
 
         [Test]
@@ -38,14 +38,14 @@ namespace CQSDotnet.Tests.Commands
         {
             // Arrange
             var resolver = new Mock<ITypeResolver>();
-            resolver.Setup(r => r.Resolve(typeof(ICommandValidator<DummyCommand>))).Returns(null);
+            resolver.Setup(r => r.Resolve(typeof(ICommandValidator<DummyCommand>))).Throws(new Exception());
             var factory = new CommandValidatorFactory(resolver.Object);
 
             // Act
             var result = factory.GetValidator<DummyCommand>();
 
             // Assert
-            Assert.IsInstanceOf<DefaultCommandValidator<DummyCommand>>(result);
+            Assert.That(result, Is.InstanceOf<DefaultCommandValidator<DummyCommand>>());
         }
     }
 }
