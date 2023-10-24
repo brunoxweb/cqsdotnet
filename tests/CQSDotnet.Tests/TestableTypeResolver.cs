@@ -1,10 +1,10 @@
-﻿namespace CQSDotnet
+﻿namespace CQSDotnet.Tests
 {
-    public class TypeResolver : ITypeResolver
+    public class TestableTypeResolver : ITypeResolver
     {
         private readonly Func<Type, object> resolver;
 
-        public TypeResolver(Func<Type, object> resolver)
+        public TestableTypeResolver(Func<Type, object> resolver)
         {
             this.resolver = resolver;
         }
